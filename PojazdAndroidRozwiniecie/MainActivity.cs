@@ -45,8 +45,15 @@ namespace WypozyczalniaAndroid
                 if (args.Item.ItemId == Resource.Id.menu_delete)
                 {
                     //implementacja usunięcia elemntu z listy
+                    BazaPojazdow.listPojazdow.RemoveAt(e.Position);
                     Toast.MakeText(this, "Usunięto", ToastLength.Short).Show();
                     //odświeżenie listy
+                    listaNazw.Clear();
+                    foreach (Pojazd pojazd in BazaPojazdow.listPojazdow)
+                    {
+                        listaNazw.Add(pojazd.OpisShort());
+                    }
+                    pojazdyListView.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, listaNazw);
                 }
                 else if (args.Item.ItemId == Resource.Id.menu_edit)
                 {

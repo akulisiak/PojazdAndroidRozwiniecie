@@ -8,5 +8,5 @@
 		android:title="Usuń" />
 	<item
 		android:id="@+id/menu_settings"
-		android:title="Usuń" />
+		android:title="Ustawienia" />
 </menu>
