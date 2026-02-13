@@ -5,7 +5,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using PojazdAndroidRozwiniecie.Model;
-using PojazdAndroidRozwiniecie.Model;
 using PojazdAndroidRozwiniecie;
 using System;
 using System.Collections.Generic;

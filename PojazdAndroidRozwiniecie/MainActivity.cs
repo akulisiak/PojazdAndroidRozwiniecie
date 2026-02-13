@@ -59,6 +59,17 @@ namespace WypozyczalniaAndroid
                 else if (args.Item.ItemId == Resource.Id.menu_edit)
                 {
                     //uruchomienie aktywności edytującej obiekt (należy przekazać id pojazdu)
+                    Intent intent;
+                    Pojazd p = BazaPojazdow.listPojazdow[e.Position];
+                    if(p is Samochod)
+                    {
+                        intent  = new Intent(this, typeof(EditSamochodActivity));
+                    }
+                    else
+                    {
+                        intent = new Intent(this, typeof(EditMotocyklActivity));
+                    }
+                    StartActivity(intent);
                     //odświeżenie listy (OnResume())
                 }
                 else if (args.Item.ItemId == Resource.Id.menu_settings)
