@@ -8,8 +8,8 @@ namespace PojazdAndroidRozwiniecie
 {
     public abstract class Pojazd
     {
-        protected string marka;
-        protected ushort rokProdukcji;
+        public string marka;
+        public ushort rokProdukcji;
         public Pojazd(string marka, ushort rokProdukcji)
         {
             this.marka = marka;

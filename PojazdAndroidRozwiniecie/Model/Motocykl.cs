@@ -8,7 +8,7 @@ namespace PojazdAndroidRozwiniecie
 {
     public class Motocykl : Pojazd
     {
-        private bool czyZabytkowy;
+        public bool czyZabytkowy;
 
         public Motocykl(bool czyZabytkowy, string marka, ushort rokProdukcji) : base(marka, rokProdukcji)
         {

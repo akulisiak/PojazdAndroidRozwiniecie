@@ -27,11 +27,7 @@ namespace WypozyczalniaAndroid
             SetContentView(Resource.Layout.activity_main);
             pojazdyListView = FindViewById<ListView>(Resource.Id.listView1);
             addButton = FindViewById<ImageButton>(Resource.Id.imageButton1);
-            foreach (Pojazd pojazd in BazaPojazdow.listPojazdow)
-            {
-                listaNazw.Add(pojazd.OpisShort());
-            }
-            pojazdyListView.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, listaNazw);
+            listUpdate();
             pojazdyListView.ItemLongClick += PojazdyListView_ItemLongClick;
             addButton.Click += AddButton_Click;
         }
@@ -50,11 +46,7 @@ namespace WypozyczalniaAndroid
                     Toast.MakeText(this, "Usunięto", ToastLength.Short).Show();
                     //odświeżenie listy
                     listaNazw.Clear();
-                    foreach (Pojazd pojazd in BazaPojazdow.listPojazdow)
-                    {
-                        listaNazw.Add(pojazd.OpisShort());
-                    }
-                    pojazdyListView.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, listaNazw);
+                    listUpdate();
                 }
                 else if (args.Item.ItemId == Resource.Id.menu_edit)
                 {
@@ -69,8 +61,10 @@ namespace WypozyczalniaAndroid
                     {
                         intent = new Intent(this, typeof(EditMotocyklActivity));
                     }
+                    intent.PutExtra("id", e.Position);
                     StartActivity(intent);
                     //odświeżenie listy (OnResume())
+                    OnResume();
                 }
                 else if (args.Item.ItemId == Resource.Id.menu_settings)
                 {
@@ -88,7 +82,22 @@ namespace WypozyczalniaAndroid
             StartActivity(intent);
         }
 
+        protected override void OnResume()
+        {
+            base.OnResume();
+            listUpdate();
+        }
 
+        private void listUpdate()
+        {
+            listaNazw.Clear();
+            foreach (Pojazd p in BazaPojazdow.listPojazdow)
+            {
+                listaNazw.Add(p.OpisShort());
+            }
+
+            pojazdyListView.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, listaNazw);
+        }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
