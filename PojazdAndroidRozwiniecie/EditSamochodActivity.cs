@@ -17,7 +17,7 @@ namespace PojazdAndroidRozwiniecie
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            SetContentView(Resource.Layout.activity_edit_samochod);
             // Create your application here
         }
     }
