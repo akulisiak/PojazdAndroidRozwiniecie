@@ -60,7 +60,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivityAdd.cs" />
+    <Compile Include="AddActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Model\BazaPojazdow.cs" />
     <Compile Include="Model\Motocykl.cs" />

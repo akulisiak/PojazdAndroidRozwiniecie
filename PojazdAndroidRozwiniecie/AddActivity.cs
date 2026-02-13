@@ -78,14 +78,14 @@ namespace PojazdAndroid
                 string marka = markaSamochoduText.Text;
                 ushort rocznik = ushort.Parse(rocznikSamochoduText.Text);
                 int liczbaDrzwi = int.Parse(liczbaDrzwiSamochoduText.Text);
-                BazaPojazdow.listaPojazdow.Add(new Samochod(liczbaDrzwi, marka, rocznik));
+                BazaPojazdow.listPojazdow.Add(new Samochod(liczbaDrzwi, rocznik, marka));
             }
             else
             {
                 string marka = markaMotocykluText.Text;
                 ushort rocznik = ushort.Parse(rocznikMotocykluText.Text);
                 bool czyZabytkowy = this.czyZabytkowy.Checked;
-                BazaPojazdow.listaPojazdow.Add(new Motocykl(czyZabytkowy, marka, rocznik));
+                BazaPojazdow.listPojazdow.Add(new Motocykl(czyZabytkowy, marka, rocznik));
             }
             Finish();
         }

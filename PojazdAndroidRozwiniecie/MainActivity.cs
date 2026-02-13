@@ -8,6 +8,7 @@ using PojazdAndroidRozwiniecie.Model;
 using PojazdAndroidRozwiniecie;
 using System.Collections.Generic;
 using PojazdAndroidRozwiniecie.Model;
+using PojazdAndroid;
 
 namespace WypozyczalniaAndroid
 {
