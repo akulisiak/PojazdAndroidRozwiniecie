@@ -63,6 +63,8 @@
     <Compile Include="AddActivity.cs" />
     <Compile Include="EditMotocyklActivity.cs" />
     <Compile Include="EditSamochodActivity.cs" />
+    <Compile Include="FragmentAutoForm.cs" />
+    <Compile Include="FragmentMotoForm.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Model\BazaPojazdow.cs" />
     <Compile Include="Model\Motocykl.cs" />
@@ -121,6 +123,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_edit_motocykl.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Menu\bottom_menu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_auto.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_motocykl.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -10,83 +10,42 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AndroidX.Fragment.App;
+using Google.Android.Material.BottomNavigation;
 
 namespace PojazdAndroid
 {
     [Activity(Label = "Activity1")]
-    public class AddActivity : Activity
+    public class AddActivity : FragmentActivity
     {
-        RadioButton samochodRadioButton;
-        RadioButton motocyklRadioButton;
-
-        LinearLayout samochodLinearLayout;
-        LinearLayout motocyklLinearLayout;
-
-        EditText markaSamochoduText;
-        EditText rocznikSamochoduText;
-        EditText liczbaDrzwiSamochoduText;
-
-        EditText markaMotocykluText;
-        EditText rocznikMotocykluText;
-        CheckBox czyZabytkowy;
-
-        Button zapiszButton;
-
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_add);
-
-            samochodLinearLayout = FindViewById<LinearLayout>(Resource.Id.linearLayout3);
-            motocyklLinearLayout = FindViewById<LinearLayout>(Resource.Id.linearLayout4);
-
-            samochodRadioButton = FindViewById<RadioButton>(Resource.Id.radioButton1);
-            samochodRadioButton.Click += SamochodRadioButton_Click;
-
-            motocyklRadioButton = FindViewById<RadioButton>(Resource.Id.radioButton2);
-            motocyklRadioButton.Click += MotocyklRadioButton_Click;
-
-            markaSamochoduText = FindViewById<EditText>(Resource.Id.editText1);
-            rocznikSamochoduText = FindViewById<EditText>(Resource.Id.editText2);
-            liczbaDrzwiSamochoduText = FindViewById<EditText>(Resource.Id.editText3);
-
-            markaMotocykluText = FindViewById<EditText>(Resource.Id.editText4);
-            rocznikMotocykluText = FindViewById<EditText>(Resource.Id.editText5);
-            czyZabytkowy = FindViewById<CheckBox>(Resource.Id.checkBox1);
-
-            zapiszButton = FindViewById<Button>(Resource.Id.button1);
-            zapiszButton.Click += ZapiszButton_Click;
+            LoadFragment(new FragmentAutoForm());
+            BottomNavigationView nav = FindViewById<BottomNavigationView>(Resource.Id.bottomNavigationView1);
+            nav.NavigationItemSelected += Nav_NavigationItemSelected;
         }
 
-        private void SamochodRadioButton_Click(object sender, EventArgs e)
+        private void Nav_NavigationItemSelected(object sender, BottomNavigationView.NavigationItemSelectedEventArgs e)
         {
-            motocyklLinearLayout.Visibility = ViewStates.Gone;
-            samochodLinearLayout.Visibility = ViewStates.Visible;
-        }
-
-        private void MotocyklRadioButton_Click(object sender, EventArgs e)
-        {
-            samochodLinearLayout.Visibility = ViewStates.Gone;
-            motocyklLinearLayout.Visibility = ViewStates.Visible;
-        }
-
-        private void ZapiszButton_Click(object sender, EventArgs e)
-        {
-            if (samochodRadioButton.Checked)
+            int id = e.Item.ItemId;
+            if (id == Resource.Id.auto_item)
             {
-                string marka = markaSamochoduText.Text;
-                ushort rocznik = ushort.Parse(rocznikSamochoduText.Text);
-                int liczbaDrzwi = int.Parse(liczbaDrzwiSamochoduText.Text);
-                BazaPojazdow.listPojazdow.Add(new Samochod(liczbaDrzwi, rocznik, marka));
+                LoadFragment(new FragmentAutoForm());
             }
             else
             {
-                string marka = markaMotocykluText.Text;
-                ushort rocznik = ushort.Parse(rocznikMotocykluText.Text);
-                bool czyZabytkowy = this.czyZabytkowy.Checked;
-                BazaPojazdow.listPojazdow.Add(new Motocykl(czyZabytkowy, marka, rocznik));
+                LoadFragment(new FragmentMotoForm());
             }
-            Finish();
+        }
+
+        private void LoadFragment(AndroidX.Fragment.App.Fragment fragment)
+        {
+            var transaction = SupportFragmentManager.BeginTransaction();
+            transaction.Replace(Resource.Id.frameLayout1, fragment);
+            transaction.Commit();
         }
     }
 }
